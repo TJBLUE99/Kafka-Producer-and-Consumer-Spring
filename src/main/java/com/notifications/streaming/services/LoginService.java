@@ -1,10 +1,13 @@
 package com.notifications.streaming.services;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.notifications.streaming.Dao.LoginDao;
 import com.notifications.streaming.config.JwtUtil;
 import com.notifications.streaming.models.UserDetails;
 
@@ -18,6 +21,9 @@ public class LoginService {
 
     @Autowired
     APIDataCacheService apiDataCacheService;
+
+    @Autowired
+    LoginDao loginDao;
 
     UserDetails details = new UserDetails();
 
@@ -36,5 +42,10 @@ public class LoginService {
         } else {
             return "User not found";
         }
+    }
+
+    public List<UserDetails> validateUserDB(UserDetails details) {
+
+        return loginDao.validateUserDB(details);
     }
 }

@@ -1,5 +1,6 @@
 package com.notifications.streaming.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 
 import com.notifications.streaming.models.UserDetails;
 import com.notifications.streaming.services.LoginService;
 import com.notifications.streaming.services.RBACService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class LoginController {
@@ -46,4 +50,15 @@ public class LoginController {
         return "invalid token";
 
     }
+
+    @GetMapping("/getValidate")
+    public ResponseEntity<?> validaDateDB(@RequestBody UserDetails details) {
+        List<UserDetails> response = loginService.validateUserDB(details);
+        if (response.size() > 0) {
+            return ResponseEntity.ok().body(response);
+        } else {
+            return ResponseEntity.status(403).body("Unauthorized");
+        }
+    }
+
 }
