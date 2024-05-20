@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.notifications.streaming.models.AdminNotification;
 import com.notifications.streaming.services.KafkaJsonProducerService;
-import com.notifications.streaming.services.KafkaProducerService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,21 +28,6 @@ public class KafkaProducercController {
 
     @Autowired
     private KafkaJsonProducerService kafkaJsonProducerService;
-
-    // @Autowired
-    // private KafkaProducerService kafkaProducerService;
-
-    // @PostMapping("/updateMessage")
-    // public ResponseEntity<?> updateAdmin() {
-    // for (int i = 0; i <= 10; i++) {
-    // kafkaProducerService.UpdateAdminNotification("updated my" + i + "th" +
-    // "notification");
-
-    // }
-    // return new ResponseEntity<>(Map.of("message", " Notification updated"),
-    // HttpStatus.OK);
-
-    // }
 
     @PostMapping("/json")
     @ResponseBody
