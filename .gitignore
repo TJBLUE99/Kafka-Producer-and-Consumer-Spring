@@ -30,6 +30,7 @@ Kafka/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+!**src/main/resources/env.properties
 
 ### VS Code ###
 .vscode/
