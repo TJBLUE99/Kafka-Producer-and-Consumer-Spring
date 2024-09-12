@@ -2,7 +2,6 @@ package com.notifications.streaming.Filters;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.io.IOException;
@@ -13,9 +12,9 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 
 @Component
-public class RBACFilter implements Filter {
+public class TokenAuthenticationFilter implements Filter {
 
-    Logger logger = LoggerFactory.getLogger(RBACFilter.class);
+    Logger logger = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
@@ -23,9 +22,6 @@ public class RBACFilter implements Filter {
 
         logger.debug("Inside filter function");
 
-        // HttpRequest httprequest = (HttpRequest) servletRequest;
-
-        // logger.info("This is the request: " + httprequest.getHeaders());
         chain.doFilter(servletRequest, servletResponse);
 
     }
