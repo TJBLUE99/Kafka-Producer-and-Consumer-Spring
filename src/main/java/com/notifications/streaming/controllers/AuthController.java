@@ -6,10 +6,7 @@ import com.notifications.streaming.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,14 @@ public class AuthController {
         ApiResponse response = new ApiResponse(result, 200);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/getUserById/{userid}")
+    public ResponseEntity<ApiResponse> getUserById(@PathVariable int userid) {
+        User result = userService.findUserById(userid);
+        ApiResponse apiResponse = new ApiResponse(result, 200);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+    
 }
 
 
