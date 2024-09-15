@@ -43,7 +43,7 @@ public class AuthController {
         ApiResponse apiResponse = new ApiResponse(result, 200);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-    
+
 }
 
 
