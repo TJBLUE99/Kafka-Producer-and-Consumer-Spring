@@ -9,11 +9,13 @@ import lombok.Setter;
 @Setter
 
 public class ApiResponse {
+
+    private Object message;
+    private int status;
+
     public ApiResponse(Object message, int status) {
         this.message = message;
         this.status = status;
     }
 
-    private Object message;
-    private int status;
 }
