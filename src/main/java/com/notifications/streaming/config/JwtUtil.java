@@ -1,5 +1,6 @@
 package com.notifications.streaming.config;
 
+import com.notifications.streaming.dto.UserDto;
 import com.notifications.streaming.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,28 +16,24 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 
-//import com.notifications.streaming.models.UserDetails;
-
 @Component
 public class JwtUtil {
 
     private static final String SECRET_KEY = "3AEC9E4D6BED514D4943CE2B9F2F4675TYTR789764YUPLMH78HG564FHF";
     private static final long EXPIRATION_TIME = 3 * 60 * 1000;
 
-    public String generateToken(User request) {
+    public String generateToken(UserDto userDto) {
 
         Map<String, String> authDetails = new HashMap<>();
-
-
         Map<String, Object> claims = new HashMap<>();
         try {
-            String jwtToken = createToken(claims, "test");
+            String jwtToken = createToken(claims, userDto.getUserName());
             System.out.println(jwtToken);
             return jwtToken;
         } catch (Exception e1) {
             System.out.println("e1" + e1);
         }
-        return "error occured";
+        return "error occurred";
     }
 
     private Key getSignInKey() {
