@@ -23,7 +23,7 @@ jobs:
       run : |
             cd src/main/resources
             touch env.properties
-            echo "${{secrets.TEST_SECRETS}" >> env.properties
+            echo "${{secrets.TEST_SECRETS}}" >> env.properties
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
