@@ -6,7 +6,6 @@ import com.notifications.streaming.entity.User;
 import com.notifications.streaming.mapper.UserMapperImplementation;
 import com.notifications.streaming.models.UserAuthentication;
 import com.notifications.streaming.repository.UserRepository;
-import com.notifications.streaming.security.EncryptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +20,10 @@ public class UserService {
 
     private final UserMapperImplementation userMapperImplementation;
     private final JwtUtil jwtUtil;
-    private final EncryptionUtils encryptionUtils;
 
-    public UserService(UserMapperImplementation userMapperImplementation, JwtUtil jwtUtil, EncryptionUtils encryptionUtils) {
+    public UserService(UserMapperImplementation userMapperImplementation, JwtUtil jwtUtil) {
         this.userMapperImplementation = userMapperImplementation;
         this.jwtUtil = jwtUtil;
-        this.encryptionUtils = encryptionUtils;
     }
 
     @Autowired
@@ -48,17 +45,17 @@ public class UserService {
         userRepository.deleteAll();
     }
 
-    public UserAuthentication validateUser(String username, String password) throws Exception {
+    public UserAuthentication validateUser(String username, String password) {
         User user = userRepository.findByUserName(username);
         UserDto userDto = userMapperImplementation.modelToDto(user);
         if (userDto.getUserName().equals(username) && userDto.getUserPassword().equals(password)) {
-            String token = encryptionUtils.encrypt(jwtUtil.generateToken(userDto));
+            String token = jwtUtil.generateToken(userDto);
             UserAuthentication userAuthentication = new UserAuthentication();
             userAuthentication.setToken(token);
             userAuthentication.setUsername(userDto.getUserName());
             return userAuthentication;
         } else {
-            throw new Exception("Invalid password");
+            return new UserAuthentication();
         }
     }
 }
