@@ -29,7 +29,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<?> getLoginToken(@RequestBody UserDto userDto) throws Exception {
+    public ResponseEntity<?> getLoginToken(@RequestBody UserDto userDto) {
         UserAuthentication response = userService.validateUser(userDto.getUserName(), userDto.getUserPassword());
         if (response.equals("invalid user")) {
             ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
@@ -67,7 +67,6 @@ public class AuthController {
         ApiResponse apiResponse = new ApiResponse("All users deleted", 200);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
 
 
 }
