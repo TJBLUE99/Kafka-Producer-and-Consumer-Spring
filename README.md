@@ -46,11 +46,14 @@ This is a Java-based CRUD application that uses PostgreSQL as its database. The 
    ```bash
    cd project-directory
 
-3. Update the application.properties file with your PostgreSQL database credentials:
+3. **Update Database Credentials:**
 
-   spring.datasource.url=jdbc:postgresql://localhost:5432/your_db_name\n
-   spring.datasource.username=your_username\n
-   spring.datasource.password=your_password\n
+   Open the `application.properties` file and configure your PostgreSQL database settings:
+
+   ```properties
+   spring.datasource.url=jdbc:postgresql://localhost:5432/your_db_name  
+   spring.datasource.username=your_username  
+   spring.datasource.password=your_password  
 
 4. run the application
 
