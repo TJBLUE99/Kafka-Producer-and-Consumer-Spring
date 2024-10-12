@@ -59,9 +59,3 @@ This is a Java-based CRUD application that uses PostgreSQL as its database. The 
 
    ```bash
    mvn spring-boot:run
-
-   
-### Notes
-
-- Replace placeholders like `your-username`, `your-repo-name`, and database credentials with actual values.
-- Adjust any sections as needed to fit your specific application details. 
