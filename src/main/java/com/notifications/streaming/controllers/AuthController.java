@@ -30,7 +30,8 @@ public class AuthController {
 
     @PostMapping(value = "/login")
     public ResponseEntity<?> getLoginToken(@RequestBody UserDto userDto) {
-        UserAuthentication response = userService.validateUser(userDto.getUserName(), userDto.getUserPassword());
+        User user = mapperImplementation.dtoToModel(userDto);
+        UserAuthentication response = userService.validateUser(user.getUserName(), user.getUserPassword());
         if (response.equals("invalid user")) {
             ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
         } else {
