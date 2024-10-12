@@ -41,9 +41,6 @@ This is a Java-based CRUD application that uses PostgreSQL as its database. The 
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-
 2. Navigate to project directory
 
    ```bash
@@ -51,9 +48,9 @@ This is a Java-based CRUD application that uses PostgreSQL as its database. The 
 
 3. Update the application.properties file with your PostgreSQL database credentials:
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/your_db_name
-spring.datasource.username=your_username
-spring.datasource.password=your_password
+   spring.datasource.url=jdbc:postgresql://localhost:5432/your_db_name\n
+   spring.datasource.username=your_username\n
+   spring.datasource.password=your_password\n
 
 4. run the application
 
