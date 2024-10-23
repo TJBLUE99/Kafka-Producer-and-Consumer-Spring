@@ -1,5 +1,6 @@
 package com.notifications.streaming.services;
 
+import com.notifications.streaming.Exception.UserNotFoundException;
 import com.notifications.streaming.config.JwtUtil;
 import com.notifications.streaming.dto.UserDto;
 import com.notifications.streaming.entity.User;
@@ -49,7 +50,7 @@ public class UserService {
         userRepository.deleteAll();
     }
 
-    public UserAuthentication validateUser(String username, String password) {
+    public UserAuthentication validateUser(String username, String password) throws UserNotFoundException {
         User user = userRepository.findByUserName(username);
         UserDto userDto = userMapperImplementation.modelToDto(user);
         if (userDto.getUserName().equals(username) && userDto.getUserPassword().equals(password)) {
