@@ -19,7 +19,7 @@ public class APIDataCacheService {
     }
 
     public String getDataFromCache(String Key) {
-        logger.info("Key revcieved: " + Key);
+        logger.info("Key revcieved{}: " + Key);
         logger.info("This is the information in the cache: " + cache.get(Key));
         return cache.get(Key);
     }
