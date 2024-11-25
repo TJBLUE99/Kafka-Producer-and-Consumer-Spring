@@ -8,5 +8,5 @@ public interface HashingFactory {
     String passwordHasher(String password);
 
     boolean checkPassword(String encryptedPassword, String password);
-    
+
 }

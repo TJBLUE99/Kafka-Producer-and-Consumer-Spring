@@ -7,7 +7,7 @@ import com.notifications.streaming.entity.User;
 import com.notifications.streaming.mapper.UserMapperImplementation;
 import com.notifications.streaming.models.UserAuthentication;
 import com.notifications.streaming.repository.UserRepository;
-import com.notifications.streaming.utils.BcryptUtil;
+//import com.notifications.streaming.utils.BcryptUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,13 @@ public class UserService {
 
     private final UserMapperImplementation userMapperImplementation;
     private final JwtUtil jwtUtil;
-    private final BcryptUtil bcryptUtil;
+//    private final BcryptUtil bcryptUtil;
 
-    public UserService(UserMapperImplementation userMapperImplementation, JwtUtil jwtUtil,
-                       BcryptUtil bcryptUtil) {
+    public UserService(UserMapperImplementation userMapperImplementation, JwtUtil jwtUtil
+    ) {
         this.userMapperImplementation = userMapperImplementation;
         this.jwtUtil = jwtUtil;
-        this.bcryptUtil = bcryptUtil;
+
     }
 
     @Autowired
