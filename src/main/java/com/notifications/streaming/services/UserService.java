@@ -7,7 +7,6 @@ import com.notifications.streaming.entity.User;
 import com.notifications.streaming.mapper.UserMapperImplementation;
 import com.notifications.streaming.models.UserAuthentication;
 import com.notifications.streaming.repository.UserRepository;
-//import com.notifications.streaming.utils.BcryptUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +62,5 @@ public class UserService {
             return new UserAuthentication();
         }
     }
-
 
 }

@@ -13,6 +13,7 @@ import java.util.List;
 
 @RequestMapping("/api/user")
 @RestController
+@CrossOrigin(value = "*")
 public class UsersController {
 
     private final UserMapperImplementation mapperImplementation;
