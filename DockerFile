@@ -1,6 +1,7 @@
 # Dockerfile
-FROM openjdk:11-jre-slim
+FROM openjdk:24-jdk-slim
 WORKDIR /app
-COPY . .
+COPY target/streaming-0.0.1-SNAPSHOT.jar /app/streaming-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
+ENV SPRING_PROFILES_ACTIVE=docker
 CMD ["java", "-jar", "streaming-0.0.1-SNAPSHOT.jar"]
