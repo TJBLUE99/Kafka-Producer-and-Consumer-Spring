@@ -1,7 +1,8 @@
 package com.notifications.streaming.dto;
 
-import jakarta.persistence.Id;
+import com.notifications.streaming.entity.Roles;
 import lombok.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -10,9 +11,10 @@ import lombok.*;
 @ToString
 public class UserDto {
 
-    @Id
     private int userID;
     private String userName;
     private String userEmail;
     private String userPassword;
+    private Set<Roles> roles;
+
 }

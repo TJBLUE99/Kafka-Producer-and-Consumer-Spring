@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findByUserName(String username) throws UserNotFoundException;
-
-
+    
 }

@@ -10,18 +10,21 @@ import com.notifications.streaming.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserMapperImplementation userMapperImplementation;
     private final JwtUtil jwtUtil;
-//    private final BcryptUtil bcryptUtil;
 
     public UserService(UserMapperImplementation userMapperImplementation, JwtUtil jwtUtil
     ) {
@@ -51,6 +54,9 @@ public class UserService {
 
     public UserAuthentication validateUser(String username, String password) throws UserNotFoundException {
         User user = userRepository.findByUserName(username);
+        if (user == null) {
+            throw new UserNotFoundException("User does not exist");
+        }
         UserDto userDto = userMapperImplementation.modelToDto(user);
         if (userDto.getUserName().equals(username) && userDto.getUserPassword().equals(password)) {
             String token = jwtUtil.generateToken(userDto);
@@ -63,4 +69,18 @@ public class UserService {
         }
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUserName(username);
+        if (user == null) {
+            throw new UserNotFoundException("User does not exists");
+        }
+        return new org.springframework.security.core.userdetails.User(
+                user.getUserName(),
+                user.getUserPassword(),
+                user.getRoles().stream()
+                        .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
+                        .toList()
+        );
+    }
 }

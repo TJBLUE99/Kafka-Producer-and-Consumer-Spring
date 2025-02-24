@@ -29,5 +29,6 @@ public class BcryptUtil implements HashingFactory {
     public boolean checkPassword(String password, String encryptedPassword) {
         return passwordEncoder.matches(password, encryptedPassword);
     }
+    
 
 }

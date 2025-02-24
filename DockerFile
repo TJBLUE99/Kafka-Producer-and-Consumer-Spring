@@ -1,5 +1,5 @@
 # Dockerfile
-FROM openjdk:24-jdk-slim
+FROM openjdk:24
 WORKDIR /app
 COPY target/streaming-0.0.1-SNAPSHOT.jar /app/streaming-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
